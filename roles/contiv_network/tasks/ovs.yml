@@ -15,41 +15,6 @@
   tags:
     - prebake-for-dev
 
-- name: install ovs (redhat)
-  yum: name=/tmp/openvswitch-2.3.1-2.el7.x86_64.rpm state=present
-  when: ansible_os_family == "RedHat"
-  tags:
-    - prebake-for-dev
-
-- name: download ovs binaries (debian)
-  get_url:
-    validate_certs: "{{ validate_certs }}"
-    dest: "{{ item.dest }}"
-    url: "{{ item.url }}"
-  with_items:
-    - {
-        url: "https://launchpad.net/ubuntu/+archive/primary/+files/openvswitch-common_2.4.0-0ubuntu4_amd64.deb",
-        dest: /tmp/ovs-common.deb
-      }
-    - {
-        url: "https://launchpad.net/ubuntu/+archive/primary/+files/openvswitch-switch_2.4.0-0ubuntu4_amd64.deb",
-        dest: /tmp/ovs-switch.deb
-      }
-  when: ansible_os_family == "Debian"
-  tags:
-    - prebake-for-dev
-
-- name: install ovs-common (debian)
-  apt: "deb=/tmp/ovs-common.deb"
-  when: ansible_os_family == "Debian"
-  tags:
-    - prebake-for-dev
-
-- name: install ovs (debian)
-  apt: "deb=/tmp/ovs-switch.deb"
-  when: ansible_os_family == "Debian"
-  tags:
-    - prebake-for-dev
 
 - name: start ovs service
   service: "name=openvswitch enabled=yes state=started"
