@@ -33,12 +33,6 @@
   tags:
     - prebake-for-dev
 
-- name: install ovs-common (debian)
-  apt: "deb=/tmp/ovs-common.deb"
-  when: ansible_os_family == "Debian"
-  tags:
-    - prebake-for-dev
-
 - name: install ovs (debian)
   apt: "deb=/tmp/ovs-switch.deb"
   when: ansible_os_family == "Debian"
