@@ -1,6 +1,5 @@
 ---
 
-tasks:
 - name: Download the docker image
   command: docker pull openbmp/aio
 
