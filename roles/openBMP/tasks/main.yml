@@ -1,0 +1,7 @@
+tasks:
+- name: Download the docker image
+  command: docker pull openbmp/aio
+- name: Create MySQL volumes
+  command: mkdir -p /var/openbmp/mysql
+  command: chmod 777 /var/openbmp/mysql
+
